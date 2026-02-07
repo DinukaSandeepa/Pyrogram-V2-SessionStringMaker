@@ -1,9 +1,17 @@
 import os
+import asyncio
 import pyfiglet
 from time import sleep
-from pyrogram import Client
 from datetime import datetime
 from requests.exceptions import ConnectionError
+
+# Ensure a default event loop exists for Pyrogram sync wrapper (Python 3.14+)
+try:
+    asyncio.get_event_loop()
+except RuntimeError:
+    asyncio.set_event_loop(asyncio.new_event_loop())
+
+from pyrogram import Client
 
 # Clean up os
 try:
